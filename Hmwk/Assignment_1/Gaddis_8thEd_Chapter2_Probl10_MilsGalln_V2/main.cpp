@@ -26,7 +26,7 @@ int main(int argc, char** argv) {
     cout<<"This is a program calculates the miles per gallon."<<endl;
     cout<<"Input number of gallons of gasoline your car can hold."<<endl;
     cin>>gallon;
-    cout<<"Input number miles your can can travel before refueling."<<endl;
+    cout<<"Input number miles your can travel before refueling."<<endl;
     cin>>miles;
     //Process by mapping inputs to outputs
     mlsPGal = miles/gallon;
