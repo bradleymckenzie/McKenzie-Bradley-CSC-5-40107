@@ -21,28 +21,28 @@ using namespace std;
 //Executable code begins here!!!
 int main(int argc, char** argv) {
     //Declare Variables
-    char month1,month2,month3;
-    float rnfl1,rnfl2,rnfl3,avgRnfl;
+    string month1,month2,month3;     //each month of rainfall
+    float rnfl1,rnfl2,rnfl3,avgRnfl; //amount of rainfall each month in inches
     
     //Input Values
     cout<<"This is a program calculates the average rainfall for three months."<<endl;
-    cout<<"Input the first month."<<endl;
+    cout<<"Enter the first month."<<endl;
     cin>>month1;
-    cout<<"Input the first month rainfall."<<endl;
+    cout<<"Enter the first month rainfall in inches."<<endl;
     cin>>rnfl1;
-    cout<<"Input the second month."<<endl;
+    cout<<"Enter the second month."<<endl;
     cin>>month2;
-    cout<<"Input the second month rainfall."<<endl;
+    cout<<"Enter the second month rainfall in inches."<<endl;
     cin>>rnfl2;
-    cout<<"Input the third month."<<endl;
+    cout<<"Enter the third month."<<endl;
     cin>>month3;
-    cout<<"Input the third month rainfall."<<endl;
+    cout<<"Enter the third month rainfall in inches."<<endl;
     cin>>rnfl3;
     //Process by mapping inputs to outputs
     avgRnfl = (rnfl1 + rnfl2 + rnfl3)/3;
     //Output Values
-    cout<<fixed<<setprecision(1);
-    cout<<"The average rainfall for"<<rnfl1<<","<<rnfl2<<","<<rnfl3<<"is"<<avgRnfl<<" inches."<<endl;
+    cout<<fixed<<setprecision(2);
+    cout<<"\tThe average rainfall for "<<month1<<", "<<month2<<", and "<<month3<<" is "<<avgRnfl<<" inches."<<endl;
     //Exit stage right!
     return 0;
 }
