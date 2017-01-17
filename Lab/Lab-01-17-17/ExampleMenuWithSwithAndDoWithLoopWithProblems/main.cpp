@@ -35,12 +35,89 @@ int main(int argc, char** argv) {
         //Switch to determine the Problem
         switch(choice){
             case '1':{
+                    //Set the random number seed
+                    srand(static_cast<unsigned int>(time(0)));
+                    //Declare Variables
+                    unsigned short average=0;
+                    char numStd=20,student=1;
+                    //Input Values
+                    cout<<"This program assigns the score and output the grade for"
+                            <<static_cast<int>(numStd)<<" students "<<endl;
+                    //Loop for each student
+                    do{
+                        //Assign a grade
+                        unsigned short score=rand()%50+50;
+                        average+=score;
+                         //Process by mapping inputs to outputs
+                          char grade=(score>=90)?'A':
+                               (score>=80)?'B':
+                               (score>=70)?'C':
+                               (score>=60)?'D':'F';
+                    //Output Values
+                    cout<<"Student "<<setw(2)<<static_cast<int>(student)
+                            <<" has score"<<score<<" = "<<grade<<endl;
+                }while(++student<=numStd);
+                    //Calculate and output the average
+                    average/=numStd;
+                    cout<<"The average test score = "<<average<<endl;
                 break;
             }
             case '2':{
+                //Set the random number seed
+                srand(static_cast<unsigned int>(time(0)));
+                //Declare Variables
+                unsigned short average=0;
+                char numStd=20,student=0;
+                //Input Values
+                cout<<"This program assigns the score and output the grade for"
+                        <<static_cast<int>(numStd)<<" students "<<endl;
+                //Loop for each student
+                while(++student<=numStd){
+                    //Assign a grade and add to the average
+                    //score and grade are local to the while loop
+                    unsigned short score=rand()%50+50;
+                    average+=score;
+                     //Process by mapping inputs to outputs
+                      char grade=(score>=90)?'A':
+                           (score>=80)?'B':
+                           (score>=70)?'C':
+                           (score>=60)?'D':'F';
+                //Output Values
+                cout<<"Student "<<setw(2)<<static_cast<int>(student)
+                        <<" has score"<<score<<" = "<<grade<<endl;
+            }
+                //Calculate and output the average
+                average/=numStd;
+                cout<<"The average test score = "<<average<<endl;
                 break;
             }
             case '3':{
+                //Set the random number seed
+                srand(static_cast<unsigned int>(time(0)));
+                //Declare Variables
+                char numStd=20;
+                unsigned short average=0;
+                //Input Values
+                cout<<"This program assigns the score and output the grade for "
+                        <<static_cast<int>(numStd)<<" students "<<endl;
+                //Loop for each student
+                for(char student=1;student<=numStd;student++){
+                    //Assign a grade and add to the average
+                    //score and grade are local to the while loop
+                    unsigned short score=rand()%50+50;
+                    average+=score;
+                     //Process by mapping inputs to outputs
+                     char grade=(score>=90)?'A':
+                          (score>=80)?'B':
+                          (score>=70)?'C':
+                          (score>=60)?'D':'F';
+                //Output Values
+                cout<<"Student "<<setw(2)<<static_cast<int>(student)
+                        <<" has score "<<score<<" = "<<grade<<endl;
+            }
+                //Calculate and output the average
+                average/=numStd;
+                cout<<"The average test score = "<<average<<endl;
                 break;
             }
             default:
