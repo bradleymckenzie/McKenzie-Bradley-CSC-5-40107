@@ -21,7 +21,7 @@ using namespace std;
 int main(int argc, char** argv) {
     //Declare Variables
     float hrsWrkd,//Hours worded in (hrs)
-          payRate,//Pay  check in $'hr
+          payRate,//Pay check in $'hr
           payChck;//Pay check in $'s
     //Input Values
     cout<<"This program calculates you paycheck"<<endl;

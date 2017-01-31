@@ -22,8 +22,8 @@ using namespace std;
 
 //Executable code begins here!!!
 int main(int argc, char** argv) {
-    //Open output file
-    ofstream PiFile("c:\\Users\\rcc\\desktop\\pi.txt");
+    //Output file
+    ofstream PiFile("E:\\CSC-5\\Lab\\Lab-01-18-17\\pi.txt");
     //Declare Variables
     const unsigned int NUM_TERMS = 10000;
     float pi = 0.0;

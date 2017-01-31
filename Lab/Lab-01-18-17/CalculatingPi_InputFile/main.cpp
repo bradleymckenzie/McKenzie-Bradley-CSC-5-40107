@@ -23,7 +23,7 @@ using namespace std;
 //Executable code begins here!!!
 int main(int argc, char** argv) {
     //Open output file
-    ifstream InFile("c:\\Users\\rcc\\desktop\\pi.txt");
+    ifstream InFile("E:\\CSC-5\\Lab\\Lab-01-18-17\\pi.txt");
     //Declare Variables
     float pi = 0;
     float term;
