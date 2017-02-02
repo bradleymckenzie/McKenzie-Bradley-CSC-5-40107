@@ -2,7 +2,7 @@
  File:   main.cpp
  Author: Bradley McKenzie
  Created on February 1, 2017
- Purpose: Calculate Retirement Saving
+ Purpose: Calculate the Average of the Highest Four Scores
  */
 
 //System Libraries
