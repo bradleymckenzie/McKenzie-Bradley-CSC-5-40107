@@ -23,7 +23,8 @@ const int PERCENT=100;//Calculate Wins and Losses Percentages
 const int HUNDRDS=100;//Limit Number of Games 100's
 const int TENS=10;//Limit Number of Games 10's
 //Function Prototypes
-
+float perCout(float, float);
+float perOut(float, float);
 //Executable code begins here!!!
 int main(int argc, char** argv) {
     //Set the random number seed
@@ -78,6 +79,7 @@ int main(int argc, char** argv) {
           }
           else{//Invalid Input
                rcolor="Invalid: Bet Color";
+               payout=0;
           }
           //Output Game Result
           cout<<fixed<<setprecision(2);
@@ -112,16 +114,13 @@ int main(int argc, char** argv) {
     //Output Percentage of Wins and Losses
      cout<<fixed<<setprecision(0);
      cout<<" -----------------------------"<<endl;
-     cout<<"  Percentage Wins of = "
-            <<static_cast<float>(PERCENT)*wins/nGames<<"%"<<endl;
-     cout<<"  Percentage of Losses = "
-            <<static_cast<float>(PERCENT)*losses/nGames<<"%"<<endl;
+     cout<<"  Percentage Wins of = "<<perCout(wins,nGames);
+     cout<<"  Percentage of Losses = "<<perCout(losses,nGames);
      cout<<" -----------------------------"<<endl;
+     
      out<<" -----------------------------"<<endl;
-     out<<"  Percentage of Wins = "
-            <<static_cast<float>(PERCENT)*wins/nGames<<"%"<<endl;
-     out<<"  Percentage of Losses = "
-            <<static_cast<float>(PERCENT)*losses/nGames<<"%"<<endl;
+     out<<"  Percentage of Wins = "<<perOut(wins,nGames);
+     out<<"  Percentage of Losses = "<<perOut(losses,nGames);
      out<<" -----------------------------"<<endl;
     //Close Files and Exit stage right!
     in.close();
@@ -129,3 +128,10 @@ int main(int argc, char** argv) {
     return 0;
 }
 
+float perCout(float wl, float nGames){
+    cout<<static_cast<float>(PERCENT)*wl/nGames<<"%"<<endl;
+}
+
+float perOut(float wl, float nGames){
+    cout<<static_cast<float>(PERCENT)*wl/nGames<<"%"<<endl;
+}
