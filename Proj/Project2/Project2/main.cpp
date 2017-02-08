@@ -26,6 +26,7 @@ const int TENS=10;//Limit Number of Games 10's
 int percRes(float, float);
 void respond(float);
 bool wnta(float);
+void disHi();
 //Executable code begins here!!!
 int main(int argc, char** argv) {
     //Set the random number seed
@@ -34,9 +35,10 @@ int main(int argc, char** argv) {
     //Instantiate and Open files
      ifstream in;
      ofstream out;
-     in.open("NumberOfGames.dat");
-     out.open("ResultsOfGames.dat");
-     
+     ofstream hi;
+     in.open("NumberOfGames.dat");//Input Number of Games
+     out.open("ResultsOfGames.dat");//Output Result of Games
+     hi.open("HighScoreOfGames.dat",ios::app);//Output Score to a List
     //Declare Variables
      float bet;//Bet Amount
      float payout;//Pay Out Result
@@ -44,22 +46,25 @@ int main(int argc, char** argv) {
      float pwings = 0;//Possible Wins
      float wins=0;//Number of Wins
      float losses=0;//Number of Losses
+     string van[2][1]={{" Thank You, for Playing"},{"A Game By Bradley McKenzie"}};//Initialize the 2-D Array
      string passwrd;//Password
      string usrname;//Username
      string bcolor;//Bet Color
      string rcolor;//Result Color
+     string vcolor[8]={"Red","red","RED","r","Blue","blue", "BLUE","b"};
+     
      unsigned int nGames=3;//Standard Number of Games
      
     //Input Values
-     cout<<"\tDouble or Nothing"<<endl;
+     cout<<"       Double or Nothing"<<endl;
      cout<<"   A Game By Bradley McKenzie"<<endl<<endl;
      cout<<"Enter Username: ";
      getline(cin,usrname);//Get Username
-     cout<<"Enter Password: ";
-     getline(cin,passwrd);//Get Correct Password
      do{
-         cout<<" Incorrect Password, Please Try Again: ";
-         getline(cin, passwrd);
+         cout<<"Enter Password: ";
+         getline(cin,passwrd);//Get Correct Password
+         if(passwrd!="password")
+           cout<<" Incorrect Password, Please Try Again: ";
      }while(passwrd!="password");cout<<endl;
      
      while(in>>nGames);//Loop to end
@@ -73,15 +78,20 @@ int main(int argc, char** argv) {
              cout<<" Enter the Amount of Your Bet: $";
              cin>>bet;//Bet amount input
          }
+         //input validation loop
          cout<<"Place Bet On (Red or Blue): ";
          cin>>bcolor;//Bet color input
-         if(bcolor!="Red" && bcolor!="red" && bcolor!="RED" && bcolor!="r" 
-                 && bcolor != "Blue" && bcolor != "blue" && bcolor != "BLUE" 
-                 && bcolor!="b"){//Validate Bet Color
+         bool valid = false;
+         for(int i=0;i<8 && !valid ;i++){
+             if (bcolor == vcolor[i]) valid = true;
+         }
+         //if !valid, then output invalid message and get cin>>color again
+         if(!valid){//Validate Bet Color
              cout<<" Invalid: Bet Color Must be (Red or Blue)"<<endl;
              cout<<" Place Bet On (Red or Blue): ";
              cin>>bcolor;//Bet color input
          }
+         //end input validation loop
         //Process by mapping inputs to outputs
         //Last line will be number of games from file
         //Call random number generator for the color landed on
@@ -137,9 +147,13 @@ int main(int argc, char** argv) {
           }
          sum += payout;//Get Sum of Pay Out
          pwings += bet*2;//Get Sum of Bet
-         cout<<"  Current Winning: $"<<sum<<endl<<endl;//Display Current Winnings
-        }
-     
+         cout<<"  Current Winning: $"<<sum<<endl<<endl;//Display Current Winnings 
+     }
+     if(sum>=0){//Output Username and Total Winnings if Winnings is > 0
+         hi<<"Username: "<<usrname<<" || Total Winnings: $"<<sum<<"\r\n";
+     }
+    hi.close();
+    
     //Output Percentage of Wins and Losses
      cout<<fixed<<setprecision(2);
      out<<fixed<<setprecision(2);
@@ -151,15 +165,21 @@ int main(int argc, char** argv) {
      cout<<" -----------------------------"<<endl;
      respond(sum);//Output Result Based on Winnings
      wnta(sum);
-     
+     cout<<"  Show High Score (Y or N): ";
+     disHi();
      out<<" -----------------------------"<<endl;
-     out<<"  Percentage of Wins = "<<percRes(wins,nGames)<<"%"<<endl;;//Percent Wins
+     out<<"  Percentage of Wins = "<<percRes(wins,nGames)<<"%"<<endl;//Percent Wins
      out<<"  Percentage of Losses = "<<percRes(losses,nGames)<<"%"<<endl;//Percent Losses
      out<<"  Possible Winnings: $"<<pwings<<endl;//Possible Winnings
      out<<"  Total Winning: $"<<sum<<endl;//Actual Winnings
      out<<" -----------------------------"<<endl;
-     //out<<" "<<respond(sum)<<endl;//Output Result Based on Winnings
      
+     for(int row=0; row<2; row++){
+         for(int col=0;col<1;col++){
+             cout<<"   "<<van[row][col];
+         }
+         cout<<endl;
+     }
     //Close Files and Exit stage right!
      in.close();
      out.close();
@@ -172,7 +192,7 @@ int percRes(float wl, float nGames){//Calculate Wins and Loss Percentage
 
 void respond(float n){
     if(n<=0){
-        cout<<"    Better Luck Next Time."<<endl;
+        cout<<"     Better Luck Next Time."<<endl;
     }
     else if(5000000>n && n>0){
         cout<<"\t   Nice Job!"<<endl;
@@ -183,8 +203,26 @@ void respond(float n){
 }
 
 bool wnta(float n){
-    if(n<0){
-        cout<<"Why Not Try Again?"<<endl;
+    if(n<=0){
+        cout<<"      Why Not Try Again?"<<endl;
     }
     return true;
+}
+void disHi(){
+    string in;
+    char openHi;
+    cin>>openHi;
+    if(openHi=='Y'){
+        ifstream inFile("HighScoreOfGames.dat");
+        if(inFile){
+            while(!inFile.eof() ){
+                //inFile>>in;
+                getline(inFile, in);
+                cout<<in<<endl;
+            }
+        }
+    }
+    else{
+        exit(0);
+    }
 }

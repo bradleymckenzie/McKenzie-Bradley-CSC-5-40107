@@ -25,6 +25,7 @@
                    kind="IMPORTANT_FILES_FOLDER">
       <itemPath>Makefile</itemPath>
     </logicalFolder>
+    <itemPath>HighScoreOfGames.dat</itemPath>
   </logicalFolder>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
@@ -44,6 +45,8 @@
           </linkerDynSerch>
         </linkerTool>
       </compileType>
+      <item path="HighScoreOfGames.dat" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
     </conf>
@@ -73,6 +76,8 @@
           </linkerDynSerch>
         </linkerTool>
       </compileType>
+      <item path="HighScoreOfGames.dat" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
     </conf>
