@@ -22,14 +22,15 @@ using namespace std;
     //as well as conversions from system of units to another
 const int PERCENT=100;//Calculate Wins and Losses Percentages
 const int HUNDRDS=100;//Limit Number of Games 100's
-const int TENS=10;//Limit Number of Games 10's
+const int TENS=10;//Limit to 10's
+const int ROW=2; const int COL=1;//2D Array
 //Function Prototypes
 int percRes(float, float);
 void respond(float);
 bool wnta(float = 0);
 void disHi();
 void getUser();
-
+bool findCol(string [], int , string);
 //Executable code begins here!!!
 int main(int argc, char** argv) {
     //Set the random number seed
@@ -59,7 +60,7 @@ int main(int argc, char** argv) {
      string vcolor[SIZE]={"Red","red","RED","r","Blue","blue", "BLUE","b"};
      string red[COLOR]={"Red","red","RED","r"};
      string blue[COLOR]={"Blue","blue","BLUE","b"};
-     string van[2][1]={{"  Thank You, for Playing."},
+     string van[ROW][COL]={{"  Thank You, for Playing."},
         {"A Game By Bradley McKenzie"}};//Initialize the 2-D Array
      unsigned int nGames=3;//Standard Number of Games
      
@@ -105,13 +106,13 @@ int main(int argc, char** argv) {
         //Call random number generator for the color landed on
          int lcolor=rand()%26+1;//Value from 1 to 26 //Spin Wheel
           if(lcolor % 2 == 0){//Land on Red
-              if(bcolor=="Red"||bcolor=="red"||bcolor=="RED"||bcolor=="r")
+              if(findCol( red, COLOR, bcolor))
               {//Bet Won
                    rcolor="Red";
                    payout=bet*2;//Double Bet
                    wins++;//Add plus one win
               }
-              else if(bcolor=="Blue"||bcolor=="blue"||bcolor=="BLUE"||bcolor=="b")
+              else if(findCol( blue, COLOR, bcolor))
               {//Bet Loss
                    rcolor="Red";
                    payout=-bet;//Minus Bet
@@ -130,12 +131,12 @@ int main(int argc, char** argv) {
               out<<"  Your pay out is: $"<<payout<<endl;
           }
           else{//Land on Blue
-              if(bcolor=="Blue"||bcolor=="blue"||bcolor=="BLUE"||bcolor=="b"){//Bet Won
+              if(findCol(blue, COLOR, bcolor)){//Bet Won
                   rcolor="Blue";
                   payout=bet*2;//Double bet
                   wins++;//Add plus one win
               }
-              else if(bcolor=="Red"||bcolor=="red"||bcolor=="RED"||bcolor=="r"){//Bet Loss
+              else if(findCol(red, COLOR, bcolor)){//Bet Loss
                   rcolor="Blue";
                   payout=-bet;//Minus Bet
                   losses++;//Add plus one loss
@@ -180,8 +181,8 @@ int main(int argc, char** argv) {
      out<<"  Total Winning: $"<<sum<<endl;//Actual Winnings
      out<<" -----------------------------"<<endl;
      
-     for(int row=0; row<2; row++){//Thank player for playing the game
-         for(int col=0;col<1;col++){
+     for(int row=0; row<ROW; row++){//Thank player for playing the game
+         for(int col=0;col<COL;col++){
              cout<<"   "<<van[row][col];//Output rows and column
          }
          cout<<endl;
@@ -260,4 +261,12 @@ void getUser(){//Search for a username
     inFind.close();}//Close File
     else
         cout<<" Could Not Open File"<<endl;
+}
+
+bool findCol(string c[], int cSize, string test){//Test Color
+    bool result = false;
+    for (int i = 0; i  < cSize ; i++){
+        if (c[i] == test) result = true;
+    }
+    return result;
 }
